@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import App from "./App";
+import { SettingsProvider } from "./context/settingsContext";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,8 @@ const router = createBrowserRouter([
 const root = document.getElementById("root") as HTMLElement;
 
 ReactDOM.createRoot(root).render(
-  <RouterProvider router={router} />,
+  <SettingsProvider>
+    <RouterProvider router={router} />
+  </SettingsProvider>
 );
 
