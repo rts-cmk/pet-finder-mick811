@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #F5F5FA;
+}
+
+.demo {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+
+    figure {
+
+        img {
+            width: 100%;
+        }
+
+        figcaption {
+            text-align: center;
+
+            h3 {
+                font-size: 20px;
+                font-weight: bolder;
+                color: #333333;
+            }
+
+            p {
+                font-size: 16px;
+                font-weight: 500;
+                color: #828282;
+                margin-bottom: 7rem;
+            }
+        }
+    }
+
+    .skip-button {
+        width: 327px;
+        height: 44px;
+        margin: 0 auto;
+        border-radius: 32px;
+        background: #57419D;
+        border: none;
+        color: #FFFFFF;
+        font-weight: bold;
+
+
+        box-shadow:
+            -5px -5px 10px #ffffff,
+            5px 5px 10px rgba(170, 170, 204, 0.25),
+            10px 10px 20px rgba(170, 170, 204, 0.5),
+            -10px -10px 20px #ffffff;
+    }
+}

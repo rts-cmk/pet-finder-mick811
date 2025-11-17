@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import App from "./App";
+import "./styles/base.scss"
 import { SettingsProvider } from "./context/settingsContext";
 
 const router = createBrowserRouter([
