@@ -1,3 +1,4 @@
+import { Outlet } from "react-router";
 import Demo from "./components/Demo";
 import { useSettings } from "./context/settingsContext";
 
@@ -8,5 +9,5 @@ export default function App() {
     return <Demo />
   }
 
-  return <div>Hello World</div>
+  return <Outlet />
 }
