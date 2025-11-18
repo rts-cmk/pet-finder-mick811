@@ -5,6 +5,11 @@ body {
     background: #F5F5FA;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .demo {
     display: flex;
     flex-direction: column;
@@ -205,8 +210,8 @@ body {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 32px;
-                    height: 32px;
+                    width: 24px;
+                    height: 24px;
                     border-radius: 50%;
                     background: #F5F5F9;
 
@@ -218,8 +223,8 @@ body {
                 }
 
                 .favorite svg {
-                    width: 28px;
-                    height: 28px;
+                    width: 12px;
+                    height: 12px;
                     flex-shrink: 0;
                 }
             }
@@ -287,7 +292,6 @@ body {
                     background: #F5F5FA;
                     color: #BDBDBD;
                     text-decoration: none;
-                    transition: all 0.2s;
 
                     box-shadow:
                         -5px -5px 10px #ffffff,
@@ -309,6 +313,163 @@ body {
                     }
                 }
             }
+        }
+    }
+}
+
+.dog-details {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: url('/assets/background.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        width: 100%;
+        height: 100%;
+        gap: 0;
+
+        .grid-item {
+            overflow: hidden;
+
+            &.grid-item-dog {
+                grid-column: 1 / -1;
+                grid-row: 1;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding: 20px;
+                padding-right: 40px;
+                z-index: 1;
+
+                figure {
+                    margin: 0;
+                    width: auto;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+
+                    img {
+                        width: 200px;
+                        height: auto;
+                        object-fit: contain;
+                        image-rendering: auto;
+                    }
+                }
+            }
+
+            &.grid-item-3 {
+                grid-column: 1;
+                grid-row: 2;
+            }
+
+            &.grid-item-4 {
+                grid-column: 1 / -1;
+                grid-row: 1 / -1;
+                display: flex;
+                align-items: flex-end;
+                justify-content: center;
+                z-index: 10;
+            }
+        }
+    }
+
+    .dog-card {
+        width: 100%;
+        max-width: 400px;
+        background: #FFFFFF;
+        border-radius: 24px 24px 0 0;
+        padding: 24px;
+        position: relative;
+        z-index: 20;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+
+        .card-header {
+            margin-bottom: 16px;
+
+            h1 {
+                margin: 0 0 8px 0;
+                font-size: 28px;
+                font-weight: 700;
+                color: #222;
+            }
+
+            .location-info {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                color: #828282;
+                font-size: 14px;
+                font-weight: 500;
+
+                svg {
+                    width: 12px;
+                    height: 13px;
+                    flex-shrink: 0;
+                }
+            }
+        }
+
+        .chips {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+
+            .chip {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 14px;
+                font-weight: 500;
+                color: #222;
+
+                .chip-icon {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    box-shadow:
+                        -5px -5px 10px #ffffff,
+                        5px 5px 10px rgba(170, 170, 204, 0.25),
+                        10px 10px 20px rgba(170, 170, 204, 0.5),
+                        -10px -10px 20px #ffffff;
+
+                    svg {
+                        width: 20px;
+                        height: 20px;
+                        flex-shrink: 0;
+                    }
+                }
+            }
+        }
+
+        .description {
+            margin: 0 0 24px 0;
+            color: #9E9E9E;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .back-button {
+            width: 100%;
+            padding: 14px;
+            border-radius: 16px;
+            background: #57419D;
+            border: none;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
     }
 }

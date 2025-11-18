@@ -6,6 +6,7 @@ import "./styles/base.scss"
 import { SettingsProvider } from "./context/settingsContext";
 import axios from "axios";
 import Home from "./components/Home";
+import DogDetails from "./components/DogDetails";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,18 @@ const router = createBrowserRouter([
           }
         }
       ]
+    },
+    {
+      path: "/dog/:id",
+      element: <DogDetails />,
+      loader: async ({ params }) => {
+        const { id } = params;
+        const { data: dog } = await axios.get<Pet>(
+            `${import.meta.env.VITE_API_ENDPOINT}/dogs/${id}`
+        )
+
+        return { dog };
+      }
     }
   ]);
 
