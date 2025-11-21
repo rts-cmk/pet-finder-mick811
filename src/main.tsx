@@ -8,6 +8,7 @@ import axios from "axios";
 import Home from "./components/Home";
 import DogDetails from "./components/DogDetails";
 import Favorites from "./components/Favorites";
+import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
 
@@ -75,6 +76,17 @@ const router = createBrowserRouter([
     {
         path: "/favorites",
         element: <Favorites />,
+        ErrorBoundary: ErrorBoundary,
+        loader: async () => {
+            const { data: user } = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/user`
+            );
+            return { user };
+        }
+    },
+    {
+        path: "/profile",
+        element: <Profile />,
         ErrorBoundary: ErrorBoundary,
         loader: async () => {
             const { data: user } = await axios.get(
