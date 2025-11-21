@@ -6,9 +6,11 @@ interface HeaderProps {
     availableCities?: string[];
     defaultLocation?: string;
     onCityChange?: (city: string) => void;
+    selectedCategory?: string | null;
+    onCategoryChange?: (category: string | null) => void;
 }
 
-export default function Header({ image, location, availableCities = [], defaultLocation, onCityChange }: HeaderProps) {
+export default function Header({ image, location, availableCities = [], defaultLocation, onCityChange, selectedCategory, onCategoryChange }: HeaderProps) {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -108,7 +110,13 @@ export default function Header({ image, location, availableCities = [], defaultL
             <nav className="nav">
                 <ul>
                     {["Cats", "Dogs", "Birds", "Other"].map((type) => (
-                        <li key={type}>{type}</li>
+                        <li 
+                            key={type}
+                            className={selectedCategory === type ? 'active' : ''}
+                            onClick={() => onCategoryChange?.(selectedCategory === type ? null : type)}
+                        >
+                            {type}
+                        </li>
                     ))}
                 </ul>
             </nav>

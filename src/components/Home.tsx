@@ -21,18 +21,39 @@ export default function Home() {
     // Use selectedCity from settings, or default to user.location
     const selectedCity = settings.selectedCity || user.location;
 
-    // Filter dogs based on selected city
+    // Filter dogs based on selected city and category
     const filteredDogs = useMemo(() => {
-        if (!selectedCity || selectedCity === user.location) {
-            return dogs;
+        let filtered = dogs;
+
+        // Filter by city
+        if (selectedCity && selectedCity !== user.location) {
+            filtered = filtered.filter(dog => dog.location === selectedCity);
         }
-        return dogs.filter(dog => dog.location === selectedCity);
-    }, [dogs, selectedCity, user.location]);
+
+        // Filter by category (if category exists in Pet data)
+        if (settings.selectedCategory) {
+            // For now, since all pets are dogs, we'll filter by category when it's available
+            // If category field exists, use it; otherwise, assume all are "Dogs"
+            filtered = filtered.filter(dog => {
+                const petCategory = (dog as any).category || 'Dogs';
+                return petCategory === settings.selectedCategory;
+            });
+        }
+
+        return filtered;
+    }, [dogs, selectedCity, user.location, settings.selectedCategory]);
 
     const handleCityChange = (city: string) => {
         updateSettings({
             ...settings,
             selectedCity: city === user.location ? null : city
+        });
+    };
+
+    const handleCategoryChange = (category: string | null) => {
+        updateSettings({
+            ...settings,
+            selectedCategory: category
         });
     };
 
@@ -44,6 +65,8 @@ export default function Home() {
                 availableCities={availableCities}
                 defaultLocation={user.location}
                 onCityChange={handleCityChange}
+                selectedCategory={settings.selectedCategory}
+                onCategoryChange={handleCategoryChange}
             />
 
             <section className="list-view">

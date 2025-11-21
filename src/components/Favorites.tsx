@@ -15,6 +15,8 @@ export default function Favorites() {
                 location={user.location}
                 availableCities={[]}
                 onCityChange={() => {}}
+                selectedCategory={null}
+                onCategoryChange={() => {}}
             />
             
             <section className="list-view">

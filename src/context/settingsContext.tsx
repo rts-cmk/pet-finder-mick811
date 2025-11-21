@@ -3,13 +3,15 @@ import { createContext, useContext, useState } from "react";
 export type UserSettings = {
   showDemo: boolean,
   favourites: Pet[],
-  selectedCity: string | null
+  selectedCity: string | null,
+  selectedCategory: string | null
 }
 
 const defaultSettings: UserSettings = {
     showDemo: true,
     favourites: [],
     selectedCity: null,
+    selectedCategory: null,
   };
 
 export const SettingsContext = createContext({
