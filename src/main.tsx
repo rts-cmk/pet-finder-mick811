@@ -7,6 +7,7 @@ import { SettingsProvider } from "./context/settingsContext";
 import axios from "axios";
 import Home from "./components/Home";
 import DogDetails from "./components/DogDetails";
+import Favorites from "./components/Favorites";
 import NotFound from "./components/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
 
@@ -43,6 +44,17 @@ const router = createBrowserRouter([
             )
 
             return { dog };
+        }
+    },
+    {
+        path: "/favorites",
+        element: <Favorites />,
+        ErrorBoundary: ErrorBoundary,
+        loader: async () => {
+            const { data: user } = await axios.get(
+                `${import.meta.env.VITE_API_ENDPOINT}/user`
+            );
+            return { user };
         }
     },
     {
