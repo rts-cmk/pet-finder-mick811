@@ -15,18 +15,18 @@ export default function Home() {
     // Get unique cities from dogs data
     const availableCities = useMemo(() => {
         const cities = new Set(dogs.map(dog => dog.location));
-        return Array.from(cities).sort();
+        return ["All Cities", ...Array.from(cities).sort()];
     }, [dogs]);
 
-    // Use selectedCity from settings, or default to user.location
-    const selectedCity = settings.selectedCity || user.location;
+    // Use selectedCity from settings, or default to "All Cities"
+    const selectedCity = settings.selectedCity || "All Cities";
 
     // Filter dogs based on selected city and category
     const filteredDogs = useMemo(() => {
         let filtered = dogs;
 
         // Filter by city
-        if (selectedCity) {
+        if (selectedCity && selectedCity !== "All Cities") {
             filtered = filtered.filter(dog => dog.location === selectedCity);
         }
 
@@ -60,7 +60,6 @@ export default function Home() {
                 image={user.image} 
                 location={selectedCity} 
                 availableCities={availableCities}
-                defaultLocation={user.location}
                 onCityChange={handleCityChange}
                 selectedCategory={settings.selectedCategory}
                 onCategoryChange={handleCategoryChange}
