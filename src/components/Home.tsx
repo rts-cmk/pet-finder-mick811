@@ -26,28 +26,14 @@ export default function Home() {
         let filtered = dogs;
 
         // Filter by city
-        if (selectedCity && selectedCity !== user.location) {
+        if (selectedCity) {
             filtered = filtered.filter(dog => dog.location === selectedCity);
         }
 
         // Filter by category
         if (settings.selectedCategory) {
-            const category = settings.selectedCategory.toLowerCase();
-            // Singularize category name for searching (e.g. "Dogs" -> "dog")
-            const searchTerm = category.endsWith('s') ? category.slice(0, -1) : category;
-            
             filtered = filtered.filter(pet => {
-                // 1. Check explicit category field if it exists
-                if (pet.category) {
-                    return pet.category.toLowerCase() === category || 
-                           pet.category.toLowerCase() === searchTerm;
-                }
-                
-                // 2. Fallback: Check if breed or description contains the category name
-                // This works well for "Dogs" since "Bulldog", "Sheepdog" etc contain "dog"
-                // and descriptions often mention "dog" or "cat"
-                const searchableText = `${pet.breed} ${pet.long_description} ${pet.short_description}`.toLowerCase();
-                return searchableText.includes(searchTerm);
+                return pet.category === settings.selectedCategory;
             });
         }
 
@@ -57,7 +43,7 @@ export default function Home() {
     const handleCityChange = (city: string) => {
         updateSettings({
             ...settings,
-            selectedCity: city === user.location ? null : city
+            selectedCity: city
         });
     };
 
