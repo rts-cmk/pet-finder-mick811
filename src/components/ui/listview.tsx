@@ -2,23 +2,24 @@ import { Link } from "react-router"
 import { useSettings } from "../../context/settingsContext";
 
 interface ListViewProps {
-    dogs: Array<Pet>
+    pets: Array<Pet>
 }
 
-export default function ListView({ dogs }: ListViewProps) {
+export default function ListView({ pets }: ListViewProps) {
     const { settings, updateSettings } = useSettings();
 
-    const toggleFavorite = (dog: Pet, e: React.MouseEvent) => {
+    const toggleFavorite = (pet: Pet, e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
         
-        const isFavorited = settings.favourites.some(fav => fav.id === dog.id);
+        const isFav = isFavorited(pet);
         let newFavourites: Pet[];
         
-        if (isFavorited) {
-            newFavourites = settings.favourites.filter(fav => fav.id !== dog.id);
+        if (isFav) {
+            // Remove from favorites checking both id and category
+            newFavourites = settings.favourites.filter(fav => !(fav.id === pet.id && fav.category === pet.category));
         } else {
-            newFavourites = [...settings.favourites, dog];
+            newFavourites = [...settings.favourites, pet];
         }
         
         updateSettings({
@@ -27,29 +28,30 @@ export default function ListView({ dogs }: ListViewProps) {
         });
     };
 
-    const isFavorited = (dogId: string) => {
-        return settings.favourites.some(fav => fav.id === dogId);
+    const isFavorited = (pet: Pet) => {
+        // Check both id and category to prevent collisions between different pet types
+        return settings.favourites.some(fav => fav.id === pet.id && fav.category === pet.category);
     };
 
     return (
         <article className="view">
-            {dogs.map((dog) => {
-                const favorited = isFavorited(dog.id);
+            {pets.map((pet) => {
+                const favorited = isFavorited(pet);
                 return (
-                    <div className="card" key={dog.id}>
+                    <div className="card" key={`${pet.category || 'dogs'}-${pet.id}`}>
                         <figure>
-                            <img src={dog.image} />
+                            <img src={pet.image} />
                         </figure>
 
                         <Link
-                            to={`/pet/${dog.category?.toLowerCase() || 'dogs'}/${dog.id}`}
+                            to={`/pet/${pet.category?.toLowerCase() || 'dogs'}/${pet.id}`}
                         >
                             <div className="content">
                                 <div className="top-row">
-                                    <h2>{dog.breed}</h2>
+                                    <h2>{pet.breed}</h2>
                                     <button 
                                         className={`favorite ${favorited ? 'favorited' : ''}`}
-                                        onClick={(e) => toggleFavorite(dog, e)}
+                                        onClick={(e) => toggleFavorite(pet, e)}
                                         aria-label={favorited ? "Remove from favorites" : "Add to favorites"}
                                     >
                                         <svg
@@ -74,10 +76,10 @@ export default function ListView({ dogs }: ListViewProps) {
                                         <path d="M9.55742 1.62357C8.60722 0.673315 7.34384 0.150002 6.00005 0.150002C4.65626 0.150002 3.39288 0.673315 2.4426 1.62354C1.4924 2.57375 0.969086 3.8371 0.969086 5.18089C0.969086 6.52466 1.4924 7.78804 2.4426 8.73829L5.75147 12.047C5.82012 12.1157 5.9101 12.15 6.00005 12.15C6.09003 12.15 6.18 12.1157 6.24865 12.047L9.55733 8.73829C10.5075 7.78806 11.0308 6.52469 11.0309 5.18087C11.0309 3.83708 10.5076 2.57373 9.55742 1.62357ZM9.06015 8.24111L6.00003 11.3013L2.93978 8.24111C1.2524 6.55368 1.2524 3.80809 2.93976 2.12075C3.75724 1.30332 4.84409 0.853128 6.00005 0.853128C7.15601 0.853128 8.24279 1.30332 9.06022 2.12075C10.7476 3.80809 10.7476 6.55368 9.06015 8.24111Z" fill="#5533EA" stroke="#5533EA" strokeWidth="0.3" />
                                         <path d="M7.58003 3.60095C7.15799 3.17893 6.59689 2.94653 6.00006 2.94653C5.40324 2.94653 4.84213 3.17893 4.42013 3.60095C3.99809 4.02297 3.76569 4.58408 3.76569 5.18092C3.76569 5.77774 3.99812 6.33886 4.42013 6.76087C4.84213 7.18289 5.40322 7.4153 6.00006 7.4153C6.59689 7.4153 7.15801 7.18289 7.58003 6.76085C8.00204 6.33883 8.23448 5.77774 8.23448 5.1809C8.23448 4.58406 8.00207 4.02297 7.58003 3.60095ZM7.08282 6.26364C6.79361 6.55286 6.40907 6.71215 6.00003 6.71215C5.59103 6.71215 5.20651 6.55286 4.91729 6.26367C4.62807 5.97445 4.46879 5.58993 4.46879 5.18092C4.46879 4.77191 4.62807 4.38737 4.91729 4.09813C5.20649 3.80893 5.59103 3.64965 6.00003 3.64965C6.40907 3.64965 6.79358 3.80893 7.0828 4.09813C7.37202 4.38733 7.5313 4.77187 7.5313 5.18088C7.53133 5.58991 7.37207 5.97442 7.08282 6.26364Z" fill="#5533EA" stroke="#5533EA" strokeWidth="0.3" />
                                     </svg>
-                                    <span className="location">{dog.location}</span>
+                                    <span className="location">{pet.location}</span>
                                 </div>
 
-                                <p className="description">{dog.short_description}</p>
+                                <p className="description">{pet.short_description}</p>
                             </div>
                         </Link>
                     </div>

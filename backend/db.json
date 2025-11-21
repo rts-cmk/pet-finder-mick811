@@ -1,0 +1,185 @@
+{
+    "user": {
+        "image": "http://localhost:4000/filebucket/user.jpg",
+        "location": "New York City"
+    },
+    "dog": [
+        {
+            "id": 1,
+            "image": "http://localhost:4000/filebucket/dog1.png",
+            "breed": "Greyhound",
+            "gender": "male",
+            "location": "New York City",
+            "short_description": "Taking care of a pet is my favorite, it helps me to ease my mind",
+            "long_description": "The dog (Canis familiaris when considered a distinct species or Canis lupus familiaris when considered a subspecies of the wolf) is a domesticated carnivore of the family Canidae, known for its loyalty, intelligence, and long-standing companionship with humans across various cultures and environments."
+        },
+        {
+            "id": 2,
+            "image": "http://localhost:4000/filebucket/dog2.png",
+            "breed": "Dobermann",
+            "gender": "male",
+            "location": "Atlanta",
+            "short_description": "Taking care of a pet is my favorite, it helps me to ease my mind",
+            "long_description": "The dog (Canis familiaris when considered a distinct species or Canis lupus familiaris when considered a subspecies of the wolf) is a domesticated carnivore of the family Canidae, known for its loyalty, intelligence, and long-standing companionship with humans across various cultures and environments."
+        },
+        {
+            "id": 3,
+            "image": "http://localhost:4000/filebucket/dog3.png",
+            "breed": "Pomeranian",
+            "gender": "female",
+            "location": "Philadelphia",
+            "short_description": "Taking care of a pet is my favorite, it helps me to ease my mind",
+            "long_description": "The dog (Canis familiaris when considered a distinct species or Canis lupus familiaris when considered a subspecies of the wolf) is a domesticated carnivore of the family Canidae, known for its loyalty, intelligence, and long-standing companionship with humans across various cultures and environments."
+        },
+        {
+            "id": 4,
+            "image": "http://localhost:4000/filebucket/dog4.png",
+            "breed": "Golden Retriever",
+            "gender": "male",
+            "location": "Los Angeles",
+            "short_description": "Friendly and energetic companion looking for an active family",
+            "long_description": "Golden Retrievers are one of the most popular dog breeds in the United States. They are known for their friendly, tolerant attitude and intelligence. Originally bred as hunting dogs, they excel in obedience and are often used as guide dogs, therapy dogs, and search-and-rescue dogs."
+        },
+        {
+            "id": 5,
+            "image": "http://localhost:4000/filebucket/dog5.png",
+            "breed": "Beagle",
+            "gender": "female",
+            "location": "Chicago",
+            "short_description": "Curious and merry, perfect for families with children",
+            "long_description": "Beagles are small to medium-sized hound dogs known for their excellent sense of smell and tracking instincts. They are friendly, curious, and merry, making them great family pets. Originally bred for hunting hares, they are now popular companion dogs due to their size and gentle temperament."
+        },
+        {
+            "id": 6,
+            "image": "http://localhost:4000/filebucket/dog6.png",
+            "breed": "French Bulldog",
+            "gender": "male",
+            "location": "Miami",
+            "short_description": "Adaptable and playful, great for apartment living",
+            "long_description": "French Bulldogs are small companion dogs known for their bat-like ears and friendly disposition. They are adaptable, playful, and smart, making them excellent pets for city dwellers. Despite their small size, they have a sturdy build and are known for being good with children and other pets."
+        },
+        {
+            "id": 7,
+            "image": "http://localhost:4000/filebucket/dog7.png",
+            "breed": "Siberian Husky",
+            "gender": "female",
+            "location": "Seattle",
+            "short_description": "Energetic and independent, loves outdoor adventures",
+            "long_description": "Siberian Huskies are medium-sized working dogs known for their endurance and ability to work in harsh conditions. They are friendly, gentle, and alert, but also independent and mischievous. Originally bred by the Chukchi people of Siberia, they are known for their striking appearance and friendly nature."
+        },
+        {
+            "id": 8,
+            "image": "http://localhost:4000/filebucket/dog8.png",
+            "breed": "Labrador Retriever",
+            "gender": "male",
+            "location": "Boston",
+            "short_description": "Outgoing and even-tempered, America's most popular breed",
+            "long_description": "Labrador Retrievers are America's most popular dog breed for good reason. They are friendly, outgoing, and high-spirited companions who have more than enough affection to go around. Originally bred as fishing dogs in Newfoundland, they are now known as excellent family pets, service dogs, and working dogs."
+        },
+        {
+            "id": 9,
+            "image": "http://localhost:4000/filebucket/dog9.png",
+            "breed": "German Shepherd",
+            "gender": "male",
+            "location": "Denver",
+            "short_description": "Confident and courageous, excellent working dog",
+            "long_description": "German Shepherds are large, agile, and well-muscled dogs known for their intelligence and versatility. They are confident, courageous, and steady, making them excellent working dogs in police and military roles. They are also loyal family companions who are protective of their loved ones."
+        },
+        {
+            "id": 10,
+            "image": "http://localhost:4000/filebucket/dog10.png",
+            "breed": "Border Collie",
+            "gender": "female",
+            "location": "Portland",
+            "short_description": "Highly intelligent and energetic, needs mental stimulation",
+            "long_description": "Border Collies are medium-sized herding dogs known for their intelligence and work ethic. They are considered one of the most intelligent dog breeds and excel in obedience, agility, and herding trials. They require plenty of exercise and mental stimulation, making them perfect for active owners who enjoy outdoor activities."
+        }
+    ],
+    "cat": [
+        {
+            "id": 1,
+            "image": "http://localhost:4000/filebucket/cat1.png",
+            "breed": "Persian",
+            "gender": "female",
+            "location": "San Francisco",
+            "short_description": "Gentle and quiet, perfect for a calm home environment",
+            "long_description": "Persian cats are one of the oldest and most popular cat breeds, known for their long, luxurious coats and sweet, gentle personalities. They are calm, quiet, and make excellent indoor companions. Persians prefer a peaceful environment and enjoy lounging around the house, making them ideal pets for those seeking a low-energy companion."
+        },
+        {
+            "id": 2,
+            "image": "http://localhost:4000/filebucket/cat2.png",
+            "breed": "Siamese",
+            "gender": "male",
+            "location": "Austin",
+            "short_description": "Vocal and social, loves attention and interaction",
+            "long_description": "Siamese cats are known for their striking blue eyes, distinctive color points, and vocal personalities. They are highly social, intelligent, and form strong bonds with their human companions. Siamese cats are active and playful, often following their owners around the house and engaging in conversation with their distinctive meows."
+        },
+        {
+            "id": 3,
+            "image": "http://localhost:4000/filebucket/cat3.png",
+            "breed": "Maine Coon",
+            "gender": "male",
+            "location": "Portland",
+            "short_description": "Friendly giant with a dog-like personality",
+            "long_description": "Maine Coons are one of the largest domesticated cat breeds, known for their impressive size, tufted ears, and bushy tails. Despite their imposing appearance, they are gentle giants with friendly, sociable personalities. Maine Coons are intelligent, playful, and often described as having dog-like qualities, including their tendency to follow their owners and play fetch."
+        }
+    ],
+    "bird": [
+        {
+            "id": 1,
+            "image": "http://localhost:4000/filebucket/bird1.png",
+            "breed": "Parrot",
+            "gender": "male",
+            "location": "Miami",
+            "short_description": "Intelligent and talkative, great companion for interactive owners",
+            "long_description": "Parrots are highly intelligent birds known for their ability to mimic human speech and sounds. They are social creatures that require significant attention and mental stimulation. Parrots form strong bonds with their owners and can live for many decades, making them a long-term commitment. They thrive in environments with plenty of interaction, toys, and opportunities to learn."
+        },
+        {
+            "id": 2,
+            "image": "http://localhost:4000/filebucket/bird2.png",
+            "breed": "Canary",
+            "gender": "female",
+            "location": "Seattle",
+            "short_description": "Beautiful singer, perfect for those who love bird songs",
+            "long_description": "Canaries are small songbirds prized for their beautiful singing abilities and vibrant colors. They are relatively low-maintenance pets that don't require as much social interaction as parrots. Male canaries are known for their melodious songs, while females are quieter. Canaries are active birds that enjoy flying and need a spacious cage with perches and toys."
+        },
+        {
+            "id": 3,
+            "image": "http://localhost:4000/filebucket/bird3.png",
+            "breed": "Finch",
+            "gender": "male",
+            "location": "Denver",
+            "short_description": "Small and social, best kept in pairs or small groups",
+            "long_description": "Finches are small, colorful birds that are social and best kept in pairs or small groups. They are active and entertaining to watch, with their constant movement and cheerful chirping. Finches are relatively easy to care for and don't require as much handling as some other pet birds. They thrive in spacious cages with plenty of perches, toys, and opportunities to fly."
+        }
+    ],
+    "other": [
+        {
+            "id": 1,
+            "image": "http://localhost:4000/filebucket/other1.png",
+            "breed": "Rabbit",
+            "gender": "female",
+            "location": "Boston",
+            "short_description": "Gentle and social, needs space to hop and explore",
+            "long_description": "Rabbits are intelligent, social animals that make wonderful pets for the right owners. They require a spacious enclosure and daily exercise time outside their cage. Rabbits are clean animals that can be litter-trained and enjoy interacting with their human companions. They need a diet rich in hay, fresh vegetables, and limited pellets, along with plenty of mental stimulation and toys."
+        },
+        {
+            "id": 2,
+            "image": "http://localhost:4000/filebucket/other2.png",
+            "breed": "Hamster",
+            "gender": "male",
+            "location": "Chicago",
+            "short_description": "Small and nocturnal, perfect for small living spaces",
+            "long_description": "Hamsters are small, nocturnal rodents that are popular pets, especially for children. They are relatively low-maintenance and don't require as much space as larger pets. Hamsters are active at night and enjoy running on exercise wheels and exploring tunnels. They need a secure cage with bedding, hiding places, and toys. Most hamsters prefer to live alone, as they can be territorial."
+        },
+        {
+            "id": 3,
+            "image": "http://localhost:4000/filebucket/other3.png",
+            "breed": "Guinea Pig",
+            "gender": "female",
+            "location": "Los Angeles",
+            "short_description": "Friendly and vocal, great for families with children",
+            "long_description": "Guinea pigs are gentle, social rodents that make excellent pets for families. Unlike hamsters, they are active during the day and enjoy human interaction. Guinea pigs are vocal animals that communicate through various sounds like wheeking, purring, and chutting. They require a spacious cage, a diet rich in hay and fresh vegetables, and ideally should be kept in pairs as they are highly social animals."
+        }
+    ]
+}
