@@ -22,25 +22,51 @@ const router = createBrowserRouter([
                 element: <Home />,
                 ErrorBoundary: ErrorBoundary,
                 loader: async () => {
-                    const [{ data: dogs }, { data: user }] = await axios.all([
-                        axios.get(`${import.meta.env.VITE_API_ENDPOINT}/dogs`),
+                    const [
+                        { data: dogs }, 
+                        { data: cats },
+                        { data: birds },
+                        { data: others },
+                        { data: user }
+                    ] = await axios.all([
+                        axios.get(`${import.meta.env.VITE_API_ENDPOINT}/dog`),
+                        axios.get(`${import.meta.env.VITE_API_ENDPOINT}/cat`),
+                        axios.get(`${import.meta.env.VITE_API_ENDPOINT}/bird`),
+                        axios.get(`${import.meta.env.VITE_API_ENDPOINT}/other`),
                         axios.get(`${import.meta.env.VITE_API_ENDPOINT}/user`)
                     ]);
 
-                    return { dogs, user };
+                    // Add category to each pet
+                    const allPets = [
+                        ...dogs.map((p: Pet) => ({ ...p, category: "Dogs" })),
+                        ...cats.map((p: Pet) => ({ ...p, category: "Cats" })),
+                        ...birds.map((p: Pet) => ({ ...p, category: "Birds" })),
+                        ...others.map((p: Pet) => ({ ...p, category: "Other" }))
+                    ];
+
+                    return { dogs: allPets, user };
                 }
             }
         ]
     },
     {
         HydrateFallback: App,
-        path: "/dog/:id",
+        path: "/pet/:category/:id",
         element: <DogDetails />,
         ErrorBoundary: ErrorBoundary,
         loader: async ({ params }) => {
-            const { id } = params;
+            const { id, category } = params;
+            // Map frontend category to API endpoint
+            const categoryMap: Record<string, string> = {
+                "dogs": "dog",
+                "cats": "cat",
+                "birds": "bird",
+                "other": "other"
+            };
+            const endpoint = categoryMap[category?.toLowerCase() || "dogs"] || "dog";
+            
             const { data: dog } = await axios.get<Pet>(
-                `${import.meta.env.VITE_API_ENDPOINT}/dogs/${id}`
+                `${import.meta.env.VITE_API_ENDPOINT}/${endpoint}/${id}`
             )
 
             return { dog };

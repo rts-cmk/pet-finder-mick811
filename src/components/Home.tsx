@@ -30,13 +30,24 @@ export default function Home() {
             filtered = filtered.filter(dog => dog.location === selectedCity);
         }
 
-        // Filter by category (if category exists in Pet data)
+        // Filter by category
         if (settings.selectedCategory) {
-            // For now, since all pets are dogs, we'll filter by category when it's available
-            // If category field exists, use it; otherwise, assume all are "Dogs"
-            filtered = filtered.filter(dog => {
-                const petCategory = (dog as any).category || 'Dogs';
-                return petCategory === settings.selectedCategory;
+            const category = settings.selectedCategory.toLowerCase();
+            // Singularize category name for searching (e.g. "Dogs" -> "dog")
+            const searchTerm = category.endsWith('s') ? category.slice(0, -1) : category;
+            
+            filtered = filtered.filter(pet => {
+                // 1. Check explicit category field if it exists
+                if (pet.category) {
+                    return pet.category.toLowerCase() === category || 
+                           pet.category.toLowerCase() === searchTerm;
+                }
+                
+                // 2. Fallback: Check if breed or description contains the category name
+                // This works well for "Dogs" since "Bulldog", "Sheepdog" etc contain "dog"
+                // and descriptions often mention "dog" or "cat"
+                const searchableText = `${pet.breed} ${pet.long_description} ${pet.short_description}`.toLowerCase();
+                return searchableText.includes(searchTerm);
             });
         }
 

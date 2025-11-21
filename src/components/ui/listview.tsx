@@ -42,7 +42,7 @@ export default function ListView({ dogs }: ListViewProps) {
                         </figure>
 
                         <Link
-                            to={`/dog/${dog.id}`}
+                            to={`/pet/${dog.category?.toLowerCase() || 'dogs'}/${dog.id}`}
                         >
                             <div className="content">
                                 <div className="top-row">
