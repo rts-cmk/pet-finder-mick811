@@ -12,29 +12,13 @@ import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
 
+// Helper function to transform image URLs from localhost to production API endpoint
 const transformImageUrl = (url: string): string => {
     const apiEndpoint = import.meta.env.VITE_API_ENDPOINT;
-    
-    // Debug: Log the environment variable (remove in production)
-    if (typeof window !== 'undefined') {
-        console.log('VITE_API_ENDPOINT:', apiEndpoint);
-    }
-    
-    if (!apiEndpoint) {
-        console.warn('VITE_API_ENDPOINT not set, using original URL:', url);
-        return url;
-    }
+    if (!apiEndpoint) return url;
     
     // Replace localhost URLs with production API endpoint
-    // Handles both http://localhost:4000 and http://localhost:PORT patterns
-    const transformed = url.replace(/http:\/\/localhost:\d+/, apiEndpoint);
-    
-    // Debug logging
-    if (url !== transformed && typeof window !== 'undefined') {
-        console.log('Transformed image URL:', url, '->', transformed);
-    }
-    
-    return transformed;
+    return url.replace(/http:\/\/localhost:\d+/, apiEndpoint);
 };
 
 const transformPet = (pet: Pet): Pet => ({
