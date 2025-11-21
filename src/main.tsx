@@ -12,6 +12,25 @@ import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
 
+const transformImageUrl = (url: string): string => {
+    const apiEndpoint = import.meta.env.VITE_API_ENDPOINT;
+    if (!apiEndpoint) return url;
+    
+    // Replace localhost URLs with production API endpoint
+    // Handles both http://localhost:4000 and http://localhost:PORT patterns
+    return url.replace(/http:\/\/localhost:\d+/, apiEndpoint);
+};
+
+const transformPet = (pet: Pet): Pet => ({
+    ...pet,
+    image: transformImageUrl(pet.image)
+});
+
+const transformUser = (user: User): User => ({
+    ...user,
+    image: transformImageUrl(user.image)
+});
+
 const router = createBrowserRouter([
     {
         HydrateFallback: App,
@@ -37,15 +56,15 @@ const router = createBrowserRouter([
                         axios.get(`${import.meta.env.VITE_API_ENDPOINT}/user`)
                     ]);
 
-                    // Add category to each pet
+                    // Add category to each pet and transform image URLs
                     const allPets = [
-                        ...dogs.map((p: Pet) => ({ ...p, category: "Dogs" })),
-                        ...cats.map((p: Pet) => ({ ...p, category: "Cats" })),
-                        ...birds.map((p: Pet) => ({ ...p, category: "Birds" })),
-                        ...others.map((p: Pet) => ({ ...p, category: "Other" }))
+                        ...dogs.map((p: Pet) => transformPet({ ...p, category: "Dogs" })),
+                        ...cats.map((p: Pet) => transformPet({ ...p, category: "Cats" })),
+                        ...birds.map((p: Pet) => transformPet({ ...p, category: "Birds" })),
+                        ...others.map((p: Pet) => transformPet({ ...p, category: "Other" }))
                     ];
 
-                    return { pets: allPets, user };
+                    return { pets: allPets, user: transformUser(user) };
                 }
             }
         ]
@@ -70,7 +89,7 @@ const router = createBrowserRouter([
                 `${import.meta.env.VITE_API_ENDPOINT}/${endpoint}/${id}`
             )
 
-            return { dog };
+            return { dog: transformPet(dog) };
         }
     },
     {
@@ -81,7 +100,7 @@ const router = createBrowserRouter([
             const { data: user } = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/user`
             );
-            return { user };
+            return { user: transformUser(user) };
         }
     },
     {
@@ -92,7 +111,7 @@ const router = createBrowserRouter([
             const { data: user } = await axios.get(
                 `${import.meta.env.VITE_API_ENDPOINT}/user`
             );
-            return { user };
+            return { user: transformUser(user) };
         }
     },
     {
