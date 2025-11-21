@@ -14,11 +14,27 @@ import ErrorBoundary from "./components/ErrorBoundary";
 
 const transformImageUrl = (url: string): string => {
     const apiEndpoint = import.meta.env.VITE_API_ENDPOINT;
-    if (!apiEndpoint) return url;
+    
+    // Debug: Log the environment variable (remove in production)
+    if (typeof window !== 'undefined') {
+        console.log('VITE_API_ENDPOINT:', apiEndpoint);
+    }
+    
+    if (!apiEndpoint) {
+        console.warn('VITE_API_ENDPOINT not set, using original URL:', url);
+        return url;
+    }
     
     // Replace localhost URLs with production API endpoint
     // Handles both http://localhost:4000 and http://localhost:PORT patterns
-    return url.replace(/http:\/\/localhost:\d+/, apiEndpoint);
+    const transformed = url.replace(/http:\/\/localhost:\d+/, apiEndpoint);
+    
+    // Debug logging
+    if (url !== transformed && typeof window !== 'undefined') {
+        console.log('Transformed image URL:', url, '->', transformed);
+    }
+    
+    return transformed;
 };
 
 const transformPet = (pet: Pet): Pet => ({
