@@ -1,4 +1,38 @@
-export default function Header({ image, location }: User) {
+import { useState, useEffect, useRef } from "react";
+
+interface HeaderProps {
+    image: string;
+    location: string;
+    availableCities?: string[];
+    defaultLocation?: string;
+    onCityChange?: (city: string) => void;
+}
+
+export default function Header({ image, location, availableCities = [], defaultLocation, onCityChange }: HeaderProps) {
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        if (isDropdownOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isDropdownOpen]);
+
+    const handleCityClick = (city: string) => {
+        onCityChange?.(city);
+        setIsDropdownOpen(false);
+    };
+
     return (
         <header className="header">
             <div className="top">
@@ -7,16 +41,58 @@ export default function Header({ image, location }: User) {
                         <img src={image} />
                     </figure>
 
-                    <div className="location">
+                    <div
+                        className="location"
+                        ref={dropdownRef}
+                        onClick={() => availableCities.length > 0 && setIsDropdownOpen(!isDropdownOpen)}
+                    >
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path fillRule="evenodd" clipRule="evenodd" d="M8 1.33334C5.3926 1.33334 2.66667 3.30435 2.66667 6.55073C2.66667 9.62319 7.40741 14.3188 7.58519 14.4928C7.70371 14.6087 7.82223 14.6667 8 14.6667C8.17778 14.6667 8.2963 14.6087 8.41482 14.4928C8.5926 14.3188 13.3333 9.62319 13.3333 6.55073C13.3333 3.30435 10.6074 1.33334 8 1.33334ZM8 8.44444C6.99259 8.44444 6.22222 7.67407 6.22222 6.66667C6.22222 5.65926 6.99259 4.88889 8 4.88889C9.00741 4.88889 9.77778 5.65926 9.77778 6.66667C9.77778 7.67407 9.00741 8.44444 8 8.44444Z" fill="#57419D" />
                         </svg>
 
                         <p>{location}</p>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#57419D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="m6 9 6 6 6-6" />
-                        </svg>
+                        {availableCities.length > 0 && (
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="#57419D"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                style={{
+                                    transform: isDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                                    transition: 'transform 0.2s'
+                                }}
+                            >
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                        )}
+
+                        {isDropdownOpen && availableCities.length > 0 && (
+                            <div className="location-dropdown">
+                                {defaultLocation && (
+                                    <button
+                                        className={`dropdown-item ${location === defaultLocation ? 'active' : ''}`}
+                                        onClick={() => handleCityClick(defaultLocation)}
+                                    >
+                                        {defaultLocation}
+                                    </button>
+                                )}
+                                {availableCities.map((city) => (
+                                    <button
+                                        key={city}
+                                        className={`dropdown-item ${location === city ? 'active' : ''}`}
+                                        onClick={() => handleCityClick(city)}
+                                    >
+                                        {city}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
 

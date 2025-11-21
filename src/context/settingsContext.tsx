@@ -2,12 +2,14 @@ import { createContext, useContext, useState } from "react";
 
 export type UserSettings = {
   showDemo: boolean,
-  favourites: Pet[]
+  favourites: Pet[],
+  selectedCity: string | null
 }
 
 const defaultSettings: UserSettings = {
     showDemo: true,
     favourites: [],
+    selectedCity: null,
   };
 
 export const SettingsContext = createContext({

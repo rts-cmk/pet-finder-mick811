@@ -10,7 +10,12 @@ export default function Favorites() {
 
     return (
         <div className="home">
-            <Header image={user.image} location={user.location} />
+            <Header
+                image={user.image}
+                location={user.location}
+                availableCities={[]}
+                onCityChange={() => {}}
+            />
             
             <section className="list-view">
                 {settings.favourites.length > 0 ? (
