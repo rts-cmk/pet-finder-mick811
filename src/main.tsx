@@ -44,7 +44,7 @@ const router = createBrowserRouter([
                         ...others.map((p: Pet) => ({ ...p, category: "Other" }))
                     ];
 
-                    return { dogs: allPets, user };
+                    return { pets: allPets, user };
                 }
             }
         ]

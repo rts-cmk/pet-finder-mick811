@@ -21,7 +21,7 @@ export default function Favorites() {
             
             <section className="list-view">
                 {settings.favourites.length > 0 ? (
-                    <ListView dogs={settings.favourites} />
+                    <ListView pets={settings.favourites} />
                 ) : (
                     <div className="empty-favorites">
                         <p>No favorites yet. Start adding dogs to your favorites!</p>

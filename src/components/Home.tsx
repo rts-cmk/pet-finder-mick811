@@ -6,28 +6,28 @@ import Footer from "./ui/footer";
 import { useSettings } from "../context/settingsContext";
 
 export default function Home() {
-    const { dogs, user } = useLoaderData() as {
-        dogs: Array<Pet>;
+    const { pets, user } = useLoaderData() as {
+        pets: Array<Pet>;
         user: User;
     };
     const { settings, updateSettings } = useSettings();
 
-    // Get unique cities from dogs data
+    // Get unique cities from pets data
     const availableCities = useMemo(() => {
-        const cities = new Set(dogs.map(dog => dog.location));
+        const cities = new Set(pets.map(pet => pet.location));
         return ["All Cities", ...Array.from(cities).sort()];
-    }, [dogs]);
+    }, [pets]);
 
     // Use selectedCity from settings, or default to "All Cities"
     const selectedCity = settings.selectedCity || "All Cities";
 
-    // Filter dogs based on selected city and category
-    const filteredDogs = useMemo(() => {
-        let filtered = dogs;
+    // Filter pets based on selected city and category
+    const filteredPets = useMemo(() => {
+        let filtered = pets;
 
         // Filter by city
         if (selectedCity && selectedCity !== "All Cities") {
-            filtered = filtered.filter(dog => dog.location === selectedCity);
+            filtered = filtered.filter(pet => pet.location === selectedCity);
         }
 
         // Filter by category
@@ -38,7 +38,7 @@ export default function Home() {
         }
 
         return filtered;
-    }, [dogs, selectedCity, user.location, settings.selectedCategory]);
+    }, [pets, selectedCity, settings.selectedCategory]);
 
     const handleCityChange = (city: string) => {
         updateSettings({
@@ -66,7 +66,7 @@ export default function Home() {
             />
 
             <section className="list-view">
-                <ListView dogs={filteredDogs} />
+                <ListView pets={filteredPets} />
             </section>
 
             <Footer />
