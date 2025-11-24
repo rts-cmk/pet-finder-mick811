@@ -11,6 +11,7 @@ import Favorites from "./components/Favorites";
 import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import ErrorBoundary from "./components/ErrorBoundary";
+import Admin from "./components/Admin";
 
 // Helper function to transform image URLs from localhost to production API endpoint
 const transformImageUrl = (url: string): string => {
@@ -113,6 +114,10 @@ const router = createBrowserRouter([
             );
             return { user: transformUser(user) };
         }
+    },
+    {
+        path: "/admin",
+        element: <Admin />,
     },
     {
         path: "*",
