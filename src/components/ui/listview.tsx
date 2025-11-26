@@ -40,7 +40,7 @@ export default function ListView({ pets }: ListViewProps) {
                 return (
                     <div className="card" key={`${pet.category || 'dogs'}-${pet.id}`}>
                         <figure>
-                            <img src={pet.image} />
+                            <img src={pet.image} alt={pet.breed} loading="lazy" />
                         </figure>
 
                         <Link

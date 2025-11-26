@@ -24,25 +24,23 @@ export const SettingsProvider = ({
 }: {
 	children: React.ReactNode;
 }) => {
-	const rawSettings = localStorage.getItem("user_settings");
-	let settings: UserSettings | undefined;
-	if (rawSettings) {
-		try {
-			settings = {
-				...defaultSettings,
-				...(JSON.parse(rawSettings) as UserSettings),
-			};
-		} catch (error) {
-			console.warn(
-				`failed parse settings with error ${error}\n\n with data`,
-				rawSettings,
-			);
+	const [currentSettings, setCurrentSettings] = useState<UserSettings>(() => {
+		const rawSettings = localStorage.getItem("user_settings");
+		if (rawSettings) {
+			try {
+				return {
+					...defaultSettings,
+					...(JSON.parse(rawSettings) as UserSettings),
+				};
+			} catch (error) {
+				console.warn(
+					`failed parse settings with error ${error}\n\n with data`,
+					rawSettings,
+				);
+			}
 		}
-	}
-
-	const [currentSettings, setCurrentSettings] = useState(
-		settings || defaultSettings,
-	);
+		return defaultSettings;
+	});
 
 	const updateSettings = (values: UserSettings) => {
 		window.localStorage.setItem("user_settings", JSON.stringify(values));

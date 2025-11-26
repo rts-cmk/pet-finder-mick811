@@ -11,7 +11,7 @@ export default function DogDetails() {
             <div className="grid-container">
                 <div className="grid-item grid-item-dog">
                     <figure>
-                        <img src={dog.image} alt={dog.breed} />
+                        <img src={dog.image} alt={dog.breed} loading="lazy" />
                     </figure>
                 </div>
                 <div className="grid-item grid-item-3"></div>
