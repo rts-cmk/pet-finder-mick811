@@ -1,0 +1,13 @@
+{
+    "name": "the-petapp-api",
+    "version": "1.0.0",
+    "description": "api for the petapp assignment",
+    "main": "index.js",
+    "scripts": {
+      "start": "json-server --watch db.json --host 0.0.0.0 --port ${PORT:-4000}",
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+      "json-server": "^0.17.1"
+    }
+  }
